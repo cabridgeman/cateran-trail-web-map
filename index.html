@@ -123,10 +123,10 @@
 
         /* HTML: <div class="loader"></div> */
         .loader {
-            width: 50px;
+            width: 18px;
             aspect-ratio: 1;
             border-radius: 50%;
-            border: 8px solid;
+            border: 5px solid;
             border-color: #ffffff #ffffff00;
             animation: l1 1s infinite;
         }
@@ -148,11 +148,19 @@
             position: absolute;
   top: 0;
   left: 0;
-  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
         }
+
+
+        .loader-label {
+  font-size: 35px;
+  margin-right: 27px;
+  margin-top: 30px;
+  color: white;
+  font-family: ubuntu;
+}
 
 
     </style>
@@ -174,7 +182,7 @@
     </div>
 
 <script>
-    $(window).on("load", function(){
+    $(window).on("load",function(){
         $("loader-wrapper").fadeOut("slow");
     });
 </script>
