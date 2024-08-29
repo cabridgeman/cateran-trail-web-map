@@ -1,4 +1,4 @@
-# Cateran Trail Webmap
+# Cateran Trail Web Map
 
 This is a qgis version of [this PKCT map](https://www.pkct.org/cateran-trail-accessibility-obstacles-interactive-map).
 
