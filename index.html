@@ -127,7 +127,7 @@
             aspect-ratio: 1;
             border-radius: 50%;
             border: 8px solid;
-            border-color: #000 #0000;
+            border-color: #ffffff #ffffff00;
             animation: l1 1s infinite;
         }
 
@@ -143,8 +143,8 @@
             position: absolute;
   top: 50%;
   left: 44%;
-  z-index: 999;
-            background-color: green;
+  z-index: 1005;
+            background-color: #821859e0;
             position: absolute;
   top: 0;
   left: 0;
@@ -169,8 +169,17 @@
 <body>
 
     <div class="loader-wrapper">
+        <p class="loader-label">Images loading</p>
         <div class="loader"></div>
     </div>
+
+<script>
+    $(window).on("load", function(){
+        $("loader-wrapper").fadeOut("slow");
+    });
+</script>
+
+
 
     <div id="map">
     </div>
