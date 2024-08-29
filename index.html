@@ -1,21 +1,24 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
-        <link rel="stylesheet" href="css/L.Control.Locate.min.css">
-        <link rel="stylesheet" href="css/qgis2web.css">
-        <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/filter.css">
-<link rel="stylesheet" href="css/nouislider.min.css">
-        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
-        <style>
-        html, body, #map {
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+    <link rel="stylesheet" href="css/L.Control.Locate.min.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/filter.css">
+    <link rel="stylesheet" href="css/nouislider.min.css">
+    <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+    <style>
+        html,
+        body,
+        #map {
             width: 100%;
             height: 100%;
             padding: 0;
@@ -23,204 +26,231 @@
         }
 
         .leaflet-control-layers-expanded .leaflet-control-layers-toggle {
-  display: none;
-  background-image: none;
-  text-decoration: none;
-  margin-bottom: 3px;
-}
+            display: none;
+            background-image: none;
+            text-decoration: none;
+            margin-bottom: 3px;
+        }
 
-#ct-logo {
-  margin: 0 auto;
-  display: block;
-}
-
-
-.abstractUncollapsed {
-  padding: 6px 8px;
-  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-  background-color: #f8f8f8 !important;
-  color: #444444 !important;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 5px;
-  max-width: 254px;
-}
-
-.filterlabel_alt_title {
-  font-size: 18px;
-  font-family: "Ubuntu", system-ui;
-  font-weight: 600;
-  padding-left: 8px;
-  background-color: #004f2f;
-  color: white;
-  padding-bottom: 6px;
-  padding-top: 6px;
-  padding-left: 11px;
-}
-
-.filterlabel_clearance {
-    font-size: 18px;
-  font-family: "Ubuntu", system-ui;
-  font-weight: 600;
-  padding-left: 8px;
-  background-color: #004f2f;
-  color: white;
-  padding-bottom: 6px;
-  padding-top: 6px;
-}
-
-.noUi-connect {
-  background: #004F2F;
-}
-
-.filterselect select {
-  display: block;
-  width: 98%;
-}
+        #ct-logo {
+            margin: 0 auto;
+            display: block;
+        }
 
 
-.filterlabel_reset_alternative {
-    color: #000;
-  margin-bottom: 10px;
-  font-family: ubuntu;
-  font-weight: 500;
-  padding-left: 0px;
-  font-size: 13px;
-}
+        .abstractUncollapsed {
+            padding: 6px 8px;
+            font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+            background-color: #f8f8f8 !important;
+            color: #444444 !important;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            max-width: 254px;
+        }
 
-.filterlabel_reset_alternative:hover {
-text-decoration: underline;
-cursor: pointer;
-}
+        .filterlabel_alt_title {
+            font-size: 18px;
+            font-family: "Ubuntu", system-ui;
+            font-weight: 600;
+            padding-left: 8px;
+            background-color: #004f2f;
+            color: white;
+            padding-bottom: 6px;
+            padding-top: 6px;
+            padding-left: 11px;
+        }
 
-.filterlabel_reset_slider {
-  color: #000;
-  margin-bottom: 10px;
-  font-family: ubuntu;
-  font-weight: 500;
-  padding-left: 7px;
-  font-size: 13px;
-}
+        .filterlabel_clearance {
+            font-size: 18px;
+            font-family: "Ubuntu", system-ui;
+            font-weight: 600;
+            padding-left: 8px;
+            background-color: #004f2f;
+            color: white;
+            padding-bottom: 6px;
+            padding-top: 6px;
+        }
 
-.filterlabel_reset_slider:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
+        .noUi-connect {
+            background: #004F2F;
+        }
 
-#menu {
-  vertical-align: top;
-  display: inline-block;
-  width: 12%;
-}
-
-.leaflet-popup-content th {
-  text-align: left;
-  vertical-align: top;
-  min-width: 132px;
-}
-
-/* HTML: <div class="loader"></div> */
-.loader {
-  width: 50px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 8px solid;
-  border-color: #000 #0000;
-  animation: l1 1s infinite;
-}
-@keyframes l1 {to{transform: rotate(.5turn)}}
-
-        </style>
-        <title>Cateran Trail Access Map</title>
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-
-    </head>
-    <body>
-
-        <div class="loader"></div> 
+        .filterselect select {
+            display: block;
+            width: 98%;
+        }
 
 
-        <div id="map">
-        </div>
-        <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script>
-        <script src="js/L.Control.Layers.Tree.min.js"></script>
-        <script src="js/L.Control.Locate.min.js"></script>
-        <script src="js/leaflet-svg-shape-markers.min.js"></script>
-        <script src="js/leaflet.rotatedMarker.js"></script>
-        <script src="js/leaflet.pattern.js"></script>
-        <script src="js/leaflet-hash.js"></script>
-        <script src="js/Autolinker.min.js"></script>
-        <script src="js/rbush.min.js"></script>
-        <script src="js/labelgun.min.js"></script>
-        <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-        <script src="js/tailDT.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/wNumb.js"></script>
-        <script src="data/CateranTrail_1.js"></script>
-        <script src="data/Roads_2.js"></script>
-        <script src="data/FallenTrees_3.js"></script>
-        <script src="data/Steps_4.js"></script>
-        <script src="data/BridgesandWaterCrossings_5.js"></script>
-        <script src="data/CattleandDrainageGrids_6.js"></script>
-        <script src="data/Stiles_7.js"></script>
-        <script src="data/StepoverGates_8.js"></script>
-        <script src="data/FieldGates_9.js"></script>
-        <script src="data/FootpathGates_10.js"></script>
-        <script>
+        .filterlabel_reset_alternative {
+            color: #000;
+            margin-bottom: 10px;
+            font-family: ubuntu;
+            font-weight: 500;
+            padding-left: 0px;
+            font-size: 13px;
+        }
+
+        .filterlabel_reset_alternative:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .filterlabel_reset_slider {
+            color: #000;
+            margin-bottom: 10px;
+            font-family: ubuntu;
+            font-weight: 500;
+            padding-left: 7px;
+            font-size: 13px;
+        }
+
+        .filterlabel_reset_slider:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #menu {
+            vertical-align: top;
+            display: inline-block;
+            width: 12%;
+        }
+
+        .leaflet-popup-content th {
+            text-align: left;
+            vertical-align: top;
+            min-width: 132px;
+        }
+
+        /* HTML: <div class="loader"></div> */
+        .loader {
+            width: 50px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 8px solid;
+            border-color: #000 #0000;
+            animation: l1 1s infinite;
+        }
+
+        @keyframes l1 {
+            to {
+                transform: rotate(.5turn)
+            }
+        }
+
+        .loader-wrapper {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+  top: 50%;
+  left: 44%;
+  z-index: 999;
+            background-color: green;
+            position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+        }
+
+
+    </style>
+    <title>Cateran Trail Access Map</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <div id="map">
+    </div>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/L.Control.Layers.Tree.min.js"></script>
+    <script src="js/L.Control.Locate.min.js"></script>
+    <script src="js/leaflet-svg-shape-markers.min.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+    <script src="js/tailDT.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/wNumb.js"></script>
+    <script src="data/CateranTrail_1.js"></script>
+    <script src="data/Roads_2.js"></script>
+    <script src="data/FallenTrees_3.js"></script>
+    <script src="data/Steps_4.js"></script>
+    <script src="data/BridgesandWaterCrossings_5.js"></script>
+    <script src="data/CattleandDrainageGrids_6.js"></script>
+    <script src="data/Stiles_7.js"></script>
+    <script src="data/StepoverGates_8.js"></script>
+    <script src="data/FieldGates_9.js"></script>
+    <script src="data/FootpathGates_10.js"></script>
+    <script>
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
 
             if (e.target.feature.geometry.type === 'LineString' || e.target.feature.geometry.type === 'MultiLineString') {
-              highlightLayer.setStyle({
-                color: '#ffe603',
-              });
+                highlightLayer.setStyle({
+                    color: '#ffe603',
+                });
             } else {
-              highlightLayer.setStyle({
-                fillColor: '#ffe603',
-                fillOpacity: 1
-              });
+                highlightLayer.setStyle({
+                    fillColor: '#ffe603',
+                    fillOpacity: 1
+                });
             }
         }
         var map = L.map('map', {
-            zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[56.61174502890397,-3.680825247528275],[56.794307221331444,-3.0238464826363187]]);
+            zoomControl: false, maxZoom: 28, minZoom: 1
+        }).fitBounds([[56.61174502890397, -3.680825247528275], [56.794307221331444, -3.0238464826363187]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
         // remove popup's row if "visible-with-data"
         function removeEmptyRowsFromPopupContent(content, feature) {
-         var tempDiv = document.createElement('div');
-         tempDiv.innerHTML = content;
-         var rows = tempDiv.querySelectorAll('tr');
-         for (var i = 0; i < rows.length; i++) {
-             var td = rows[i].querySelector('td.visible-with-data');
-             var key = td ? td.id : '';
-             if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
-                 rows[i].parentNode.removeChild(rows[i]);
-             }
-         }
-         return tempDiv.innerHTML;
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            var rows = tempDiv.querySelectorAll('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var td = rows[i].querySelector('td.visible-with-data');
+                var key = td ? td.id : '';
+                if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
+                    rows[i].parentNode.removeChild(rows[i]);
+                }
+            }
+            return tempDiv.innerHTML;
         }
         // add class to format popup if it contains media
-		function addClassToPopupIfMedia(content, popup) {
-			var tempDiv = document.createElement('div');
-			tempDiv.innerHTML = content;
-			if (tempDiv.querySelector('td img')) {
-				popup._contentNode.classList.add('media');
-					// Delay to force the redraw
-					setTimeout(function() {
-						popup.update();
-					}, 10);
-			} else {
-				popup._contentNode.classList.remove('media');
-			}
-		}
-        var title = new L.Control({'position':'topright'});
+        function addClassToPopupIfMedia(content, popup) {
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            if (tempDiv.querySelector('td img')) {
+                popup._contentNode.classList.add('media');
+                // Delay to force the redraw
+                setTimeout(function () {
+                    popup.update();
+                }, 10);
+            } else {
+                popup._contentNode.classList.remove('media');
+            }
+        }
+        var title = new L.Control({ 'position': 'topright' });
         title.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'info');
             this.update();
@@ -230,20 +260,20 @@ cursor: pointer;
             this._div.innerHTML = '<h2>Cateran Trail Access Map</h2> <a href="https://www.pkct.org/Pages/Category/visit-cateran-trail"><img src="images/ct-logo.webp" width=200px id="ct-logo"></a>';
         };
         title.addTo(map);
-        var abstract = new L.Control({'position':'topright'});
+        var abstract = new L.Control({ 'position': 'topright' });
         abstract.onAdd = function (map) {
             this._div = L.DomUtil.create('div',
-            'leaflet-control abstractUncollapsed');
+                'leaflet-control abstractUncollapsed');
             this._div.id = 'abstract';
-    this._div.innerHTML = 'Interactive map of access obstacles on The Cateran Trail. Filter your search by selecting obstacles from the list to the right. Click points to view details and images, and click on images to view full-screen. Some obstacles, like gates and bridges, can be filtered by width clearance.';
-    return this._div;
-};
+            this._div.innerHTML = 'Interactive map of access obstacles on The Cateran Trail. Filter your search by selecting obstacles from the list to the right. Click points to view details and images, and click on images to view full-screen. Some obstacles, like gates and bridges, can be filtered by width clearance.';
+            return this._div;
+        };
 
         abstract.addTo(map);
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        L.control.locate({ locateOptions: { maxZoom: 19 } }).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -262,7 +292,7 @@ cursor: pointer;
         map.addLayer(layer_OSMStandard_0);
         function pop_CateranTrail_1(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -310,10 +340,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_CateranTrail_1_0() {
@@ -345,7 +375,7 @@ cursor: pointer;
         map.addLayer(layer_CateranTrail_1);
         function pop_Roads_2(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -384,10 +414,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_Roads_2_0() {
@@ -429,7 +459,7 @@ cursor: pointer;
         map.addLayer(layer_Roads_2);
         function pop_FallenTrees_3(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -468,10 +498,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_FallenTrees_3_0() {
@@ -513,7 +543,7 @@ cursor: pointer;
         map.addLayer(layer_FallenTrees_3);
         function pop_Steps_4(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -552,10 +582,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_Steps_4_0() {
@@ -597,7 +627,7 @@ cursor: pointer;
         map.addLayer(layer_Steps_4);
         function pop_BridgesandWaterCrossings_5(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -636,10 +666,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_BridgesandWaterCrossings_5_0() {
@@ -681,7 +711,7 @@ cursor: pointer;
         map.addLayer(layer_BridgesandWaterCrossings_5);
         function pop_CattleandDrainageGrids_6(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -720,10 +750,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_CattleandDrainageGrids_6_0() {
@@ -765,7 +795,7 @@ cursor: pointer;
         map.addLayer(layer_CattleandDrainageGrids_6);
         function pop_Stiles_7(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -804,10 +834,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_Stiles_7_0() {
@@ -849,7 +879,7 @@ cursor: pointer;
         map.addLayer(layer_Stiles_7);
         function pop_StepoverGates_8(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -888,10 +918,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_StepoverGates_8_0() {
@@ -933,7 +963,7 @@ cursor: pointer;
         map.addLayer(layer_StepoverGates_8);
         function pop_FieldGates_9(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -972,10 +1002,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_FieldGates_9_0() {
@@ -1017,7 +1047,7 @@ cursor: pointer;
         map.addLayer(layer_FieldGates_9);
         function pop_FootpathGates_10(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     for (var i in e.target._eventParents) {
                         if (typeof e.target._eventParents[i].resetStyle === 'function') {
                             e.target._eventParents[i].resetStyle(e.target);
@@ -1056,10 +1086,10 @@ cursor: pointer;
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_FootpathGates_10_0() {
@@ -1106,38 +1136,38 @@ cursor: pointer;
             title: 'Testing'
         }).addTo(map);
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
+            .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search for a place';
+            .title += 'Search for a place';
         var baseMaps = {};
         var overlaysTree = [
-            {label: '<img src="legend/FootpathGates_10.png" /> Footpath Gates', layer: layer_FootpathGates_10},
-            {label: '<img src="legend/FieldGates_9.png" /> Field Gates', layer: layer_FieldGates_9},
-            {label: '<img src="legend/StepoverGates_8.png" /> Step-over Gates', layer: layer_StepoverGates_8},
-            {label: '<img src="legend/Stiles_7.png" /> Stiles', layer: layer_Stiles_7},
-            {label: '<img src="legend/CattleandDrainageGrids_6.png" /> Cattle and Drainage Grids', layer: layer_CattleandDrainageGrids_6},
-            {label: '<img src="legend/BridgesandWaterCrossings_5.png" /> Bridges and Water Crossings', layer: layer_BridgesandWaterCrossings_5},
-            {label: '<img src="legend/Steps_4.png" /> Steps', layer: layer_Steps_4},
-            {label: '<img src="legend/FallenTrees_3.png" /> Fallen Trees', layer: layer_FallenTrees_3},
-            {label: '<img src="legend/Roads_2.png" /> Roads', layer: layer_Roads_2},
-]
-        var lay = L.control.layers.tree(null, overlaysTree,{
+            { label: '<img src="legend/FootpathGates_10.png" /> Footpath Gates', layer: layer_FootpathGates_10 },
+            { label: '<img src="legend/FieldGates_9.png" /> Field Gates', layer: layer_FieldGates_9 },
+            { label: '<img src="legend/StepoverGates_8.png" /> Step-over Gates', layer: layer_StepoverGates_8 },
+            { label: '<img src="legend/Stiles_7.png" /> Stiles', layer: layer_Stiles_7 },
+            { label: '<img src="legend/CattleandDrainageGrids_6.png" /> Cattle and Drainage Grids', layer: layer_CattleandDrainageGrids_6 },
+            { label: '<img src="legend/BridgesandWaterCrossings_5.png" /> Bridges and Water Crossings', layer: layer_BridgesandWaterCrossings_5 },
+            { label: '<img src="legend/Steps_4.png" /> Steps', layer: layer_Steps_4 },
+            { label: '<img src="legend/FallenTrees_3.png" /> Fallen Trees', layer: layer_FallenTrees_3 },
+            { label: '<img src="legend/Roads_2.png" /> Roads', layer: layer_Roads_2 },
+        ]
+        var lay = L.control.layers.tree(null, overlaysTree, {
             //namedToggle: true,
             //selectorBack: false,
             //closedSymbol: '&#8862; &#x1f5c0;',
             //openedSymbol: '&#8863; &#x1f5c1;',
             //collapseAll: 'Collapse all',
             //expandAll: 'Expand all',
-            collapsed: false, 
+            collapsed: false,
         });
         lay.addTo(map);
-		document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // set new Layers List height which considers toggle icon
             function newLayersListHeight() {
                 var layerScrollbarElement = document.querySelector('.leaflet-control-layers-scrollbar');
                 if (layerScrollbarElement) {
                     var layersListElement = document.querySelector('.leaflet-control-layers-list');
-                    var originalHeight = layersListElement.style.height 
+                    var originalHeight = layersListElement.style.height
                         || window.getComputedStyle(layersListElement).height;
                     var newHeight = parseFloat(originalHeight) - 50;
                     layersListElement.style.height = newHeight + 'px';
@@ -1147,7 +1177,7 @@ cursor: pointer;
             var controlLayersElement = document.querySelector('.leaflet-control-layers');
             var toggleLayerControl = document.querySelector('.leaflet-control-layers-toggle');
             // toggle Collapsed/Expanded and apply new Layers List height
-            toggleLayerControl.addEventListener('click', function() {
+            toggleLayerControl.addEventListener('click', function () {
                 if (isLayersListExpanded) {
                     controlLayersElement.classList.remove('leaflet-control-layers-expanded');
                 } else {
@@ -1155,233 +1185,234 @@ cursor: pointer;
                 }
                 isLayersListExpanded = !isLayersListExpanded;
                 newLayersListHeight()
-            });	
-			// apply new Layers List height if toggle layerstree
-			if (controlLayersElement) {
-				controlLayersElement.addEventListener('click', function(event) {
-					var toggleLayerHeaderPointer = event.target.closest('.leaflet-layerstree-header-pointer span');
-					if (toggleLayerHeaderPointer) {
-						newLayersListHeight();
-					}
-				});
-			}
+            });
+            // apply new Layers List height if toggle layerstree
+            if (controlLayersElement) {
+                controlLayersElement.addEventListener('click', function (event) {
+                    var toggleLayerHeaderPointer = event.target.closest('.leaflet-layerstree-header-pointer span');
+                    if (toggleLayerHeaderPointer) {
+                        newLayersListHeight();
+                    }
+                });
+            }
             // Collapsed/Expanded at Start to apply new height
-            setTimeout(function() {
+            setTimeout(function () {
                 toggleLayerControl.click();
             }, 10);
-            setTimeout(function() {
+            setTimeout(function () {
                 toggleLayerControl.click();
             }, 10);
             // Collapsed touch/small screen
             var isSmallScreen = window.innerWidth < 650;
             if (isSmallScreen) {
-                setTimeout(function() {
+                setTimeout(function () {
                     controlLayersElement.classList.remove('leaflet-control-layers-expanded');
                     isLayersListExpanded = !isLayersListExpanded;
                 }, 500);
-            }  
-        });       
+            }
+        });
         setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
-        row.className="row";
-        row.id="all";
+        row.className = "row";
+        row.id = "all";
         row.style.height = "100%";
         var col1 = document.createElement('div');
-        col1.className="col9";
+        col1.className = "col9";
         col1.id = "mapWindow";
         col1.style.height = "99%";
         col1.style.width = "88%";
         col1.style.display = "inline-block";
         var col2 = document.createElement('div');
-        col2.className="col3";
+        col2.className = "col3";
         col2.id = "menu";
         col2.style.display = "inline-block";
         mapDiv.parentNode.insertBefore(row, mapDiv);
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"clearance": "real","alternative": "str"};
+        var Filters = { "clearance": "real", "alternative": "str" };
         function filterFunc() {
-          map.eachLayer(function(lyr){
-          if ("options" in lyr && "dataVar" in lyr["options"]){
-            features = this[lyr["options"]["dataVar"]].features.slice(0);
-            try{
-              for (key in Filters){
-                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
-                if (Filters[key] == "str" || Filters[key] == "bool"){
-                  var selection = [];
-                  var options = document.getElementById("sel_" + keyS).options
-                  for (var i=0; i < options.length; i++) {
-                    if (options[i].selected) selection.push(options[i].value);
-                  }
-                    try{
-                      if (key in features[0].properties){
-                        for (i = features.length - 1;
-                          i >= 0; --i){
-                          if (selection.indexOf(
-                          features[i].properties[key])<0
-                          && selection.length>0) {
-                          features.splice(i,1);
-                          }
+            map.eachLayer(function (lyr) {
+                if ("options" in lyr && "dataVar" in lyr["options"]) {
+                    features = this[lyr["options"]["dataVar"]].features.slice(0);
+                    try {
+                        for (key in Filters) {
+                            keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                            if (Filters[key] == "str" || Filters[key] == "bool") {
+                                var selection = [];
+                                var options = document.getElementById("sel_" + keyS).options
+                                for (var i = 0; i < options.length; i++) {
+                                    if (options[i].selected) selection.push(options[i].value);
+                                }
+                                try {
+                                    if (key in features[0].properties) {
+                                        for (i = features.length - 1;
+                                            i >= 0; --i) {
+                                            if (selection.indexOf(
+                                                features[i].properties[key]) < 0
+                                                && selection.length > 0) {
+                                                features.splice(i, 1);
+                                            }
+                                        }
+                                    }
+                                } catch (err) {
+                                }
+                            }
+                            if (Filters[key] == "int") {
+                                sliderVals = document.getElementById(
+                                    "div_" + keyS).noUiSlider.get();
+                                try {
+                                    if (key in features[0].properties) {
+                                        for (i = features.length - 1; i >= 0; --i) {
+                                            if (parseInt(features[i].properties[key])
+                                                < sliderVals[0]
+                                                || parseInt(features[i].properties[key])
+                                                > sliderVals[1]) {
+                                                features.splice(i, 1);
+                                            }
+                                        }
+                                    }
+                                } catch (err) {
+                                }
+                            }
+                            if (Filters[key] == "real") {
+                                sliderVals = document.getElementById(
+                                    "div_" + keyS).noUiSlider.get();
+                                try {
+                                    if (key in features[0].properties) {
+                                        for (i = features.length - 1; i >= 0; --i) {
+                                            if (features[i].properties[key]
+                                                < sliderVals[0]
+                                                || features[i].properties[key]
+                                                > sliderVals[1]) {
+                                                features.splice(i, 1);
+                                            }
+                                        }
+                                    }
+                                } catch (err) {
+                                }
+                            }
+                            if (Filters[key] == "date"
+                                || Filters[key] == "datetime"
+                                || Filters[key] == "time") {
+                                try {
+                                    if (key in features[0].properties) {
+                                        HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                                        startdate = document.getElementById("dat_" +
+                                            HTMLkey + "_date1").value.replace(" ", "T");
+                                        enddate = document.getElementById("dat_" +
+                                            HTMLkey + "_date2").value.replace(" ", "T");
+                                        for (i = features.length - 1; i >= 0; --i) {
+                                            if (features[i].properties[key] < startdate
+                                                || features[i].properties[key] > enddate) {
+                                                features.splice(i, 1);
+                                            }
+                                        }
+                                    }
+                                } catch (err) {
+                                }
+                            }
                         }
-                      }
-                    } catch(err){
-                  }
+                    } catch (err) {
+                    }
+                    this[lyr["options"]["layerName"]].clearLayers();
+                    this[lyr["options"]["layerName"]].addData(features);
                 }
-                if (Filters[key] == "int"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (parseInt(features[i].properties[key])
-                          < sliderVals[0]
-                          || parseInt(features[i].properties[key])
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "real"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (features[i].properties[key]
-                          < sliderVals[0]
-                          || features[i].properties[key]
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "date"
-                  || Filters[key] == "datetime"
-                  || Filters[key] == "time"){
-                  try{
-                    if (key in features[0].properties){
-                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
-                      startdate = document.getElementById("dat_" +
-                        HTMLkey + "_date1").value.replace(" ", "T");
-                      enddate = document.getElementById("dat_" +
-                        HTMLkey + "_date2").value.replace(" ", "T");
-                      for (i = features.length - 1; i >= 0; --i){
-                        if (features[i].properties[key] < startdate
-                          || features[i].properties[key] > enddate){
-                          features.splice(i,1);
-                        }
-                      }
-                    }
-                  } catch(err){
-                  }
-                }
-              }
-            } catch(err){
-            }
-          this[lyr["options"]["layerName"]].clearLayers();
-          this[lyr["options"]["layerName"]].addData(features);
-          }
-          })
+            })
         }
-// Create the label for the slider
-var lab_clearance = document.createElement('div');
-lab_clearance.innerHTML  = 'Set width clearance (metres): <span id="val_clearance"></span>';
-lab_clearance.className = 'filterlabel_clearance';
-document.getElementById("menu").appendChild(lab_clearance); // Append the label first
+        // Create the label for the slider
+        var lab_clearance = document.createElement('div');
+        lab_clearance.innerHTML = 'Set width clearance (metres): <span id="val_clearance"></span>';
+        lab_clearance.className = 'filterlabel_clearance';
+        document.getElementById("menu").appendChild(lab_clearance); // Append the label first
 
-// Create the div for the slider
-var div_clearance = document.createElement("div");
-div_clearance.id = "div_clearance";
-div_clearance.className = "slider";
-document.getElementById("menu").appendChild(div_clearance); // Append the slider after the label
+        // Create the div for the slider
+        var div_clearance = document.createElement("div");
+        div_clearance.id = "div_clearance";
+        div_clearance.className = "slider";
+        document.getElementById("menu").appendChild(div_clearance); // Append the slider after the label
 
-// Create the reset button
-var reset_clearance = document.createElement('div');
-reset_clearance.innerHTML = 'Reset filter';
-reset_clearance.className = 'filterlabel_reset_slider';
-reset_clearance.onclick = function() {
-    sel_clearance.noUiSlider.reset();
-};
-document.getElementById("menu").appendChild(reset_clearance); // Append the reset button
+        // Create the reset button
+        var reset_clearance = document.createElement('div');
+        reset_clearance.innerHTML = 'Reset filter';
+        reset_clearance.className = 'filterlabel_reset_slider';
+        reset_clearance.onclick = function () {
+            sel_clearance.noUiSlider.reset();
+        };
+        document.getElementById("menu").appendChild(reset_clearance); // Append the reset button
 
-// Initialize the slider
-var sel_clearance = document.getElementById('div_clearance');
-noUiSlider.create(sel_clearance, {
-    connect: true,
-    start: [0.1, 8.0],
-    range: {
-        min: 0.1,
-        max: 8.0
-    }
-});
+        // Initialize the slider
+        var sel_clearance = document.getElementById('div_clearance');
+        noUiSlider.create(sel_clearance, {
+            connect: true,
+            start: [0.1, 8.0],
+            range: {
+                min: 0.1,
+                max: 8.0
+            }
+        });
 
-// Update the label with the slider values
-sel_clearance.noUiSlider.on('update', function (values) {
-    val_clearance = document.getElementById('val_clearance');
-    val_clearance.innerHTML = values.join(' - ');
-    filterFunc(); // Assuming filterFunc() is defined elsewhere
-});
-// Create the alternative label
-var lab_alternative = document.createElement('div');
-lab_alternative.innerHTML = 'Only show objects with access alternatives?';
-lab_alternative.className = 'filterlabel_alt_title';
+        // Update the label with the slider values
+        sel_clearance.noUiSlider.on('update', function (values) {
+            val_clearance = document.getElementById('val_clearance');
+            val_clearance.innerHTML = values.join(' - ');
+            filterFunc(); // Assuming filterFunc() is defined elsewhere
+        });
+        // Create the alternative label
+        var lab_alternative = document.createElement('div');
+        lab_alternative.innerHTML = 'Only show objects with access alternatives?';
+        lab_alternative.className = 'filterlabel_alt_title';
 
-// Append the label to the menu first
-document.getElementById("menu").appendChild(lab_alternative);
+        // Append the label to the menu first
+        document.getElementById("menu").appendChild(lab_alternative);
 
-// Create the alternative div container
-var div_alternative = document.createElement('div');
-div_alternative.id = "div_alternative";
-div_alternative.className = "filterselect";
+        // Create the alternative div container
+        var div_alternative = document.createElement('div');
+        div_alternative.id = "div_alternative";
+        div_alternative.className = "filterselect";
 
-// Append the alternative div container to the menu
-document.getElementById("menu").appendChild(div_alternative);
+        // Append the alternative div container to the menu
+        document.getElementById("menu").appendChild(div_alternative);
 
-// Create the select element
-sel_alternative = document.createElement('select');
-sel_alternative.multiple = true;
-sel_alternative.size = 4;
-sel_alternative.id = "sel_alternative";
-var alternative_options_str = "<option value='' unselected></option>";
-sel_alternative.onchange = function(){filterFunc()};
-alternative_options_str  += '<option value="Conditional">Conditional</option>';
-alternative_options_str  += '<option value="No">No</option>';
-alternative_options_str  += '<option value="Yes">Yes</option>';
-sel_alternative.innerHTML = alternative_options_str;
-div_alternative.appendChild(sel_alternative);
+        // Create the select element
+        sel_alternative = document.createElement('select');
+        sel_alternative.multiple = true;
+        sel_alternative.size = 4;
+        sel_alternative.id = "sel_alternative";
+        var alternative_options_str = "<option value='' unselected></option>";
+        sel_alternative.onchange = function () { filterFunc() };
+        alternative_options_str += '<option value="Conditional">Conditional</option>';
+        alternative_options_str += '<option value="No">No</option>';
+        alternative_options_str += '<option value="Yes">Yes</option>';
+        sel_alternative.innerHTML = alternative_options_str;
+        div_alternative.appendChild(sel_alternative);
 
-// Append the reset button to the alternative div
-var reset_alternative = document.createElement('div');
-reset_alternative.innerHTML = 'Reset filter';
-reset_alternative.className = 'filterlabel_reset_alternative';
-reset_alternative.onclick = function() {
-    var options = document.getElementById("sel_alternative").options;
-    for (var i=0; i < options.length; i++) {
-        options[i].selected = false;
-    }
-    filterFunc();
-};
-div_alternative.appendChild(reset_alternative);
+        // Append the reset button to the alternative div
+        var reset_alternative = document.createElement('div');
+        reset_alternative.innerHTML = 'Reset filter';
+        reset_alternative.className = 'filterlabel_reset_alternative';
+        reset_alternative.onclick = function () {
+            var options = document.getElementById("sel_alternative").options;
+            for (var i = 0; i < options.length; i++) {
+                options[i].selected = false;
+            }
+            filterFunc();
+        };
+        div_alternative.appendChild(reset_alternative);
 
-            div_alternative.appendChild(reset_alternative);
+        div_alternative.appendChild(reset_alternative);
         resetLabels([layer_BridgesandWaterCrossings_5]);
-        map.on("zoomend", function(){
+        map.on("zoomend", function () {
             resetLabels([layer_BridgesandWaterCrossings_5]);
         });
-        map.on("layeradd", function(){
+        map.on("layeradd", function () {
             resetLabels([layer_BridgesandWaterCrossings_5]);
         });
-        map.on("layerremove", function(){
+        map.on("layerremove", function () {
             resetLabels([layer_BridgesandWaterCrossings_5]);
         });
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>
